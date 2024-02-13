@@ -7,8 +7,9 @@ import {
 } from "@material-tailwind/react";
 
 const ProfileCard = ({ img = "https://picsum.photos/200/300", data }) => {
+
     return (
-        <Card style={{ backgroundColor: data?.hair_color }} className="bg-gray-400 border border-gray-800 w-full md:flex-row overflow-hidden">
+        <Card style={{ backgroundColor: data?.hair_color?.split(",").at(-1).trim() }} className="bg-yellow-100 border border-gray-800 w-full md:flex-row overflow-hidden">
             <CardHeader
                 shadow={false}
                 floated={false}
