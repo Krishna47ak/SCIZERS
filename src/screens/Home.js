@@ -11,6 +11,22 @@ const Home = () => {
     const [searchText, setSearchtext] = useState("")
     const [searchData, setSearchData] = useState(profiles)
 
+    const search = (profiles, searchText) => {
+        const filteredData = profiles.filter((profile) => (
+            (profile?.name?.toLocaleLowerCase()?.includes(searchText.toLocaleLowerCase()))
+        ))
+        return filteredData
+    }
+
+    useEffect(() => {
+        if (searchText) {
+            const filteredData = search(profiles, searchText)
+            setSearchData(filteredData)
+        } else {
+            setSearchData(profiles)
+        }
+    }, [searchText, profiles])
+
     return (
         <div className='bg-black text-white min-h-screen' >
             <NavbarHeader value={searchText} onChange={setSearchtext} />
