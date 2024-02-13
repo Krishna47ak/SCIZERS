@@ -1,14 +1,13 @@
-import quadBApi from '../../api/scizersApi'
+import scizersApi from '../../api/scizersApi'
 import { FETCH_ERROR, FETCH_PROFILES, SET_LOADING } from '../types'
 
 export const fetchProfiles = () => async dispatch => {
     try {
-        const response = await quadBApi.get('/')
+        const response = await scizersApi.get('/')
         dispatch({ type: FETCH_PROFILES, payload: response?.data })
     } catch (err) {
         dispatch({ type: FETCH_ERROR })
-        const errors = err?.response?.data?.error
-        console.error(errors);
+        console.error(err);
     }
 }
 
@@ -20,7 +19,6 @@ export const paginate = (url) => async dispatch => {
         dispatch({ type: FETCH_PROFILES, payload: data })
     } catch (err) {
         dispatch({ type: FETCH_ERROR })
-        const errors = err?.response?.data?.error
-        console.error(errors);
+        console.error(err);
     }
 }
